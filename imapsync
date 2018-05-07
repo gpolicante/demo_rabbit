@@ -1,0 +1,13 @@
+#!/bin/bash
+
+HOST1=$(grep server1 server  | awk -F= '{print $2}')
+HOST2=$(grep server2 server  | awk -F= '{print $2}')
+PASS1=$(grep password1 server  | awk -F= '{print $2}')
+PASS2=$(grep password2 server  | awk -F= '{print $2}')
+
+
+for i in $(cat users); do 
+
+imapsync --host1 $HOST1 --user1 $i --password1 $PASS1 --ssl1 --host2 $HOST2  --user2 $i --password2 $PASS2 --ssl2
+
+done 
